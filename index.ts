@@ -14,22 +14,13 @@ redisClient.on("error", () => {
 redisClient.connect();
 
 const init = async () => {
-  // SET
-  const redisSET = await redisClient.SET("username", "redis123");
-  console.log("redisSET", redisSET);
+  // INCR
+  const redisINCR = await redisClient.INCR("count");
+  console.log("redisINCR", redisINCR);
 
-  // GET
-  const redisGET = await redisClient.GET("username");
-  console.log("redisGET", redisGET);
-
-  // SETNX
-  // for unique keys
-  const redisSETNX = await redisClient.SETNX("username", "new username");
-  console.log("redisSETNX", redisSETNX);
-
-  // MGET
-  const redisMGET = await redisClient.MGET(["username","new username"]);
-  console.log('redisMGET',redisMGET);
+  // INCRBY
+  const redisINCRBY = await redisClient.INCRBY("count", 5);
+  console.log("redisINCRBY", redisINCRBY);
 };
 
 init();
